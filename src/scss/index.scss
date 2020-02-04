@@ -1,0 +1,10 @@
+$btn-color: hsl(195, 55%, 80%);
+$btn-hover: hsl(195, 50%, 70%);
+$btn-active: hsl(195, 40%, 60%);
+@import "./normolize.scss";
+@import "./MainHeader.scss";
+@import "./MainTable.scss";
+@import "./pagination.scss";
+body {
+    margin-left: 5px;
+}
