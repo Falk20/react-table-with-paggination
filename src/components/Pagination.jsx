@@ -19,6 +19,7 @@ export default class Pagination extends Component {
                 <PageList
                     pageCount={this.props.pageCount}
                     currentPage={this.props.currentPage}
+                    changePage={this.props.changePage}
                 />
                 <a id='next-page' onClick={this.clickHandle}>{'>'}</a>
             </div>
