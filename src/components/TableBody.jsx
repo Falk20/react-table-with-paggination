@@ -13,7 +13,7 @@ export default class TableBody extends Component {
     render() {
         let records = this.props.records.map((record) => {
             let address = record.address;
-            let viewAddress = `${address.state}, ${address.city},\n${address.streetAddress}`;
+            let viewAddress = `${address.state}, ${address.city},\n${address.streetAddress}, ${address.zip}`;
             return (
                 <tr key={record.id + record.email}>
                     <td className='id' name='id'>{record.id}</td>
