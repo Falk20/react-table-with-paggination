@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 
 export default class TableBody extends Component {
-    clickHandle = (e) => {
-        let choosenTr = e.target.closest('tr');
-        let info = {
-            id: choosenTr['id'].innerText
-        };
+    constructor(props) {
+        super(props)
 
-        console.log(info);
+        this.state = {
+            id: '',
+            firstName: ''
+        }
+    }
+
+
+    clickHandle = (e) => {
+        const choosenTr = e.target.closest('tr');
+        this.setState({
+            id: choosenTr.children['id'].innerText,
+            firstName: choosenTr.children['first-name'].innerText
+        },()=>{
+            this.props.chooseRecord(this.state);
+        });
+
+        
     }
 
     render() {
         let records = this.props.records.map((record) => {
-            let address = record.address;
-            let viewAddress = `${address.streetAddress},\n${address.city} ${address.zip}, ${address.state}`;
+            const address = record.address;
+            const viewAddress = `${address.streetAddress},\n${address.city} ${address.zip}, ${address.state}`;
             return (
                 <tr key={record.id + record.email}>
                     <td className='id' name='id'>{record.id}</td>
