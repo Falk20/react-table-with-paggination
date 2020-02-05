@@ -80,9 +80,9 @@ export default class ReactTable extends Component {
 
     records = records.filter((record)=>{
       for (let param in record) {
-        if (param === 'address') {
-          for (let addressParam in record[param]) {
-            if (record[param][addressParam].includes(searchString)) {
+        if (typeof record[param] === 'object') {
+          for (let subParam in record[param]) {
+            if (record[param][subParam].includes(searchString)) {
               return true;
             } 
           }
