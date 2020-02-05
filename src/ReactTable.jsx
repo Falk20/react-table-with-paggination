@@ -3,6 +3,7 @@ import MainHeader from './components/MainHeader';
 import MainTable from './components/MainTable';
 import Pagination from './components/Pagination';
 import ViewInfoPopup from './components/ViewInfoPopup';
+import AddNewRecord from './components/AddNewRecord';
 
 export default class ReactTable extends Component {
   constructor(props) {
@@ -167,6 +168,7 @@ export default class ReactTable extends Component {
         {this.state.choosenRecord.id ? (
           <ViewInfoPopup choosenRecord={this.state.choosenRecord} />
         ) : null}
+        <AddNewRecord />
       </div>
     )
   }
