@@ -1,20 +1,15 @@
-import React, { Component } from 'react'
-import TableColumnHead from './TableColumnHead'
+import React, { Component } from 'react';
+import TableHead from './TableHead';
+import TableBody from './TableBody';
 
 export default class MainTable extends Component {
 
     render() {
-        let headers = this.props.headers ? this.props.headers.map((header) => (
-            <TableColumnHead header={header} key={header} />
-        )) : null;
-
         return (
             <table className="react-table">
-                <thead>
-                    <tr>
-                        {headers}
-                    </tr>
-                </thead>
+                <TableHead />
+
+                <TableBody records={this.props.records}/>
             </table>
         )
     }
