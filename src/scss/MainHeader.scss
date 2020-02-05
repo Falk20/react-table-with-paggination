@@ -33,6 +33,13 @@ nav {
       background: $btn-active;
     }
   }
+
+  .record-count {
+    &.hidden {
+      display: none;
+    }
+  }
+
   ul {
     display: flex;
 
