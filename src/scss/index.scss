@@ -1,3 +1,4 @@
+$main: lightcoral;
 $btn-color: hsl(195, 55%, 80%);
 $btn-hover: hsl(195, 50%, 70%);
 $btn-active: hsl(195, 40%, 60%);
@@ -5,6 +6,7 @@ $btn-active: hsl(195, 40%, 60%);
 @import "./MainHeader.scss";
 @import "./MainTable.scss";
 @import "./pagination.scss";
+@import "./ViewInfoPopup.scss";
 body {
   margin-left: 5px;
 }
