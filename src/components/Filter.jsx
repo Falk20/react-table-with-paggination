@@ -9,7 +9,6 @@ export default class Filter extends Component {
         }
     }
     
-
     submitHandle = (e) => {
         e.preventDefault();
         this.props.filterRecords(this.state.searchString);
