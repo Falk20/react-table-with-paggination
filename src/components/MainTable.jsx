@@ -6,8 +6,8 @@ export default class MainTable extends Component {
 
     render() {
         return (
-            <table className="react-table">
-                <TableHead />
+            <table className='react-table'>
+                <TableHead sortRecords={this.props.sortRecords}/>
 
                 <TableBody records={this.props.records}/>
             </table>
