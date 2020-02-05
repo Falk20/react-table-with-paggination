@@ -9,7 +9,6 @@ export default class ViewInfoPopup extends Component {
 
     render() {
         const address = this.props.choosenRecord.address;
-        const viewAddress = `${address.streetAddress},\n${address.city} ${address.zip}, ${address.state}`;
 
         return (
             <div className="view-info-wrapper hidden" onClick={this.closeHandle}>
@@ -25,8 +24,14 @@ export default class ViewInfoPopup extends Component {
                         <span><a href={`mailto:${this.props.choosenRecord.email}`}>{this.props.choosenRecord.email}</a></span>
                         <span>Phone:</span>
                         <span><a href={`tel:+${this.props.choosenRecord.phone}`}>{this.props.choosenRecord.phone}</a></span>
-                        <span>Address:</span>
-                        <span>{viewAddress}</span>
+                        <span>Street:</span>
+                        <span>{address.streetAddress}</span>
+                        <span>City:</span>
+                        <span>{address.city}</span>
+                        <span>State:</span>
+                        <span>{address.state}</span>
+                        <span>Zip:</span>
+                        <span>{address.zip}</span>
                         <span>Description:</span>
                         <span>{this.props.choosenRecord.description}</span>
                     </div>
