@@ -9,7 +9,6 @@ export default class AddNewRecord extends Component {
         }
     }
     
-
     submitHandle = (e) => {
         e.preventDefault();
         let formElems = e.target.elements;
@@ -28,6 +27,7 @@ export default class AddNewRecord extends Component {
             description: formElems['description'].value
         }, ()=> {
             this.props.addNewRecord(this.state);
+            document.querySelector('.add-new-record').reset();
         });
     }
 
