@@ -1,0 +1,32 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  
+  a {
+    background: $btn-color;
+    color: white;
+
+    padding: 5px;
+    margin: 2px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    &:hover {
+      background: $btn-hover;
+    }
+
+    &:active {
+      background: $btn-active;
+    }
+
+    &.current {
+      background: $btn-active;
+    }
+  }
+}
