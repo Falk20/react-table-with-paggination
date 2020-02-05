@@ -1,0 +1,35 @@
+.react-table {
+  width: 100%;
+  margin: 10px 0;
+
+  thead {
+    border-bottom: 1px solid black;
+
+    th {
+      padding: 5px 0;
+      cursor: pointer;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid grey;
+
+      &:hover {
+        background: lightcyan;
+      }
+
+      td {
+        padding: 10px 0;
+        text-align: center;
+
+        min-width: 120px;
+        max-width: 300px;
+
+        white-space: nowrap; /* Запрещаем перенос строк */
+        overflow: hidden; /* Обрезаем все, что не помещается в область */
+        text-overflow: ellipsis; /* Добавляем многоточие */
+      }
+    }
+  }
+}
