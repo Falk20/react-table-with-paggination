@@ -77,7 +77,10 @@ export default class ReactTable extends Component {
 
   filterRecords = (searchString) => {
     let records = this.state.records;
-
+    //в данном случае нет смысла обрабатывать более глубокую вложенность,
+    //так как это нагрузит функцию,
+    //в случае появления в параметрах записей объектов с более глубокой вложенностью,
+    //придётся делать обход по дереву параметров этих объектов
     records = records.filter((record)=>{
       for (let param in record) {
         if (typeof record[param] === 'object') {
