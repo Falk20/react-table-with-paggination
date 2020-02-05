@@ -75,8 +75,32 @@ export default class ReactTable extends Component {
     });
   }
 
-  filterRecords = (e) => {
-    
+  filterRecords = (searchString) => {
+    let records = this.state.records;
+
+    records = records.filter((record)=>{
+      for (let param in record) {
+        if (param === 'address') {
+          for (let addressParam in record[param]) {
+            if (record[param][addressParam].includes(searchString)) {
+              return true;
+            } 
+          }
+        } else {
+          if (record[param].toString().includes(searchString)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    });
+
+    this.setState(oldState => {
+      oldState.currentPage = 0;
+      oldState.splitedRecords = this.splitRecords(records);
+
+      return oldState;
+    })
   }
 
   changeCount = (records) => {
