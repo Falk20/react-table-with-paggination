@@ -18,11 +18,16 @@ nav {
     li {
       margin: 0 5px;
 
-      a {
+      button {
+        font-family: "My Roboto";
+        font-size: 1.2em;
+
         background: $btn-color;
+        color: white;
 
         padding: 5px;
 
+        border: none;
         border-radius: 5px;
 
         cursor: pointer;
@@ -58,7 +63,6 @@ nav {
       font-family: "My Roboto";
       font-size: 1.2em;
 
-
       padding: 5px;
       border-radius: 0 5px 5px 0;
 
@@ -66,10 +70,6 @@ nav {
 
       background-color: $btn-color;
       color: white;
-
-      &:focus {
-        outline: none;
-      }
 
       &:hover {
         background-color: $btn-hover;

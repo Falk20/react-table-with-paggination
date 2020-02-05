@@ -10,14 +10,14 @@ export default class PageList extends Component {
 
         for (let i = 0; i < this.props.pageCount; i++) {
             pages[i] = (
-                <a
+                <button
                     key={i}
                     className={i === this.props.currentPage ? 'current' : ''}
                     data-page={i}
                     onClick={this.clickHandle}
                 >
                     {i + 1}
-                </a>
+                </button>
             )
         }
 

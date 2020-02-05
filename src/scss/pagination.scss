@@ -6,13 +6,14 @@
   -khtml-user-select: none;
   user-select: none;
   
-  a {
+  button {
     background: $btn-color;
     color: white;
 
     padding: 5px;
     margin: 2px;
 
+    border: none;
     border-radius: 5px;
 
     cursor: pointer;

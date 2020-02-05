@@ -15,13 +15,13 @@ export default class Pagination extends Component {
     render() {
         return (
             <div className='pagination'>
-                <a id='prev-page' onClick={this.clickHandle}>{'<'}</a>
+                <button id='prev-page' onClick={this.clickHandle}>{'<'}</button>
                 <PageList
                     pageCount={this.props.pageCount}
                     currentPage={this.props.currentPage}
                     changePage={this.props.changePage}
                 />
-                <a id='next-page' onClick={this.clickHandle}>{'>'}</a>
+                <button id='next-page' onClick={this.clickHandle}>{'>'}</button>
             </div>
         )
     }

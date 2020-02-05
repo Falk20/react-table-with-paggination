@@ -24,8 +24,8 @@ export default class RecordsCount extends Component {
         return (
             <div className=''>
                 <ul className=''>
-                    <li className=''><a onClick={this.clickHandle} data-value='32'>32 записи</a></li>
-                    <li className=''><a onClick={this.clickHandle} data-value='1000'>1000 записей</a></li>
+                    <li className=''><button onClick={this.clickHandle} data-value='32'>32 записи</button></li>
+                    <li className=''><button onClick={this.clickHandle} data-value='1000'>1000 записей</button></li>
                 </ul>
             </div>
         )
