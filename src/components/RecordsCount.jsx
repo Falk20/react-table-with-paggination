@@ -18,14 +18,15 @@ export default class RecordsCount extends Component {
             .then(result => {
                 this.props.changeCount(result);
                 spinner.classList.remove('show');
+                document.querySelector('.record-count').classList.add('hidden');
             })
             .catch(console.log);
     }
 
     render() {
         return (
-            <div className=''>
-                <ul className=''>
+            <div className='record-count'>
+                <ul>
                     <li className=''><button onClick={this.clickHandle} data-value='32'>32 записи</button></li>
                     <li className=''><button onClick={this.clickHandle} data-value='1000'>1000 записей</button></li>
                     <li><div id="spinner"></div></li>
