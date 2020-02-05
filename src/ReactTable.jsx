@@ -9,6 +9,7 @@ export default class ReactTable extends Component {
 
     this.state = {
       records: [],
+      splitedRecords: [],
       currentPage: 0
     }
   }
@@ -34,11 +35,53 @@ export default class ReactTable extends Component {
     return splitedRecords;
   }
 
-  changeCount = (records) => {
+  sortRecords = (columnName, ascending, type) => {
+    let records = this.state.records;
+    records = records.sort((a, b) => {
+      let one = a[columnName];
+      let two = b[columnName];
 
+      if (type === 'number') {
+        return one - two;
+      }
+      
+      if (type === 'address') {
+        one = one.city;
+        two = two.city;
+      }
+
+      if (one.toLowerCase() > two.toLowerCase()) {
+        return 1;
+      }
+      if (one.toLowerCase() === two.toLowerCase()) {
+        return 0;
+      }
+      if (one.toLowerCase() < two.toLowerCase()) {
+        return -1;
+      }
+
+      return 0;
+    })
+
+    if (!ascending) {
+      records = records.reverse();
+    }
 
     this.setState({
-      records: this.splitRecords(records),
+      records: records,
+      splitedRecords: this.splitRecords(records),
+      currentPage: 0
+    });
+  }
+
+  filterRecords = (e) => {
+
+  }
+
+  changeCount = (records) => {
+    this.setState({
+      records: records,
+      splitedRecords: this.splitRecords(records),
       currentPage: 0
     }, () => {
       console.log(this.state);
@@ -47,19 +90,22 @@ export default class ReactTable extends Component {
 
   render() {
     return (
-      <div className="">
+      <div className=''>
         <MainHeader changeCount={this.changeCount} />
-        {this.state.records.length > 0 ? (
+        {this.state.splitedRecords.length > 0 ? (
           <>
             <Pagination
               changePage={this.changePage}
-              pageCount={this.state.records.length}
+              pageCount={this.state.splitedRecords.length}
               currentPage={this.state.currentPage}
             />
-            <MainTable records={this.state.records[this.state.currentPage]} />
+            <MainTable
+              records={this.state.splitedRecords[this.state.currentPage]}
+              sortRecords={this.sortRecords}
+            />
             <Pagination
               changePage={this.changePage}
-              pageCount={this.state.records.length}
+              pageCount={this.state.splitedRecords.length}
               currentPage={this.state.currentPage}
             />
           </>
