@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MainHeader from './components/MainHeader';
 import MainTable from './components/MainTable';
 import Pagination from './components/Pagination';
+import ViewInfoPopup from './components/ViewInfoPopup';
 
 export default class ReactTable extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ export default class ReactTable extends Component {
     this.state = {
       records: [],
       splitedRecords: [],
-      currentPage: 0
+      currentPage: 0,
+      choosenRecord: {}
     }
   }
 
@@ -81,13 +83,13 @@ export default class ReactTable extends Component {
     //так как это нагрузит функцию,
     //в случае появления в параметрах записей объектов с более глубокой вложенностью,
     //придётся делать обход по дереву параметров этих объектов
-    records = records.filter((record)=>{
+    records = records.filter((record) => {
       for (let param in record) {
         if (typeof record[param] === 'object') {
           for (let subParam in record[param]) {
             if (record[param][subParam].includes(searchString)) {
               return true;
-            } 
+            }
           }
         } else {
           if (record[param].toString().includes(searchString)) {
@@ -115,6 +117,26 @@ export default class ReactTable extends Component {
       console.log(this.state);
     })
   }
+  //поскольку api предоставляет записи с повторяющимися id,
+  // придётся расчитывать, что сочетание id+firstName будет уникальным
+  //в боевых условиях, скорее всего, будет уникальный ключ
+  chooseRecord = ({ id, firstName }) => {
+    const choosenRecord = this.state.records.find((item) => {
+      if (item.id === parseInt(id) && item.firstName === firstName) {
+        return true;
+      }
+      return false;
+    });
+
+    this.setState(oldState => {
+      oldState.choosenRecord = choosenRecord;
+
+      return oldState;
+    }, () => {
+      console.log(this.state.choosenRecord);
+      document.querySelector('.view-info-wrapper').classList.remove('hidden');
+    });
+  }
 
   render() {
     return (
@@ -133,6 +155,7 @@ export default class ReactTable extends Component {
             <MainTable
               records={this.state.splitedRecords[this.state.currentPage]}
               sortRecords={this.sortRecords}
+              chooseRecord={this.chooseRecord}
             />
             <Pagination
               changePage={this.changePage}
@@ -140,6 +163,9 @@ export default class ReactTable extends Component {
               currentPage={this.state.currentPage}
             />
           </>
+        ) : null}
+        {this.state.choosenRecord.id ? (
+          <ViewInfoPopup choosenRecord={this.state.choosenRecord} />
         ) : null}
       </div>
     )
