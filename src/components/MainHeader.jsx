@@ -13,7 +13,7 @@ export default class MainHeader extends Component {
                 <h1>Таблица</h1>
                 <RecordsCount changeCount={this.props.changeCount}/>
                 {this.props.availability? (
-                    <button className="show-form" onClick={this.addRecordHandle}>Новая запись</button>
+                    <button className="show-form" onClick={this.addRecordHandle}>Добавить</button>
                 ): null}
                 <Filter setFilter={this.props.setFilter}/>
             </nav>
