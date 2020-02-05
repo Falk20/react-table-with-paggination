@@ -1,0 +1,83 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+
+  background: lightcoral;
+  color: white;
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  ul {
+    display: flex;
+
+    li {
+      margin: 0 5px;
+
+      a {
+        background: $btn-color;
+
+        padding: 5px;
+
+        border-radius: 5px;
+
+        cursor: pointer;
+
+        &:hover {
+          background: $btn-hover;
+        }
+
+        &:active {
+          background: $btn-active;
+        }
+      }
+    }
+  }
+
+  form {
+    input[type="search"] {
+      font-family: "My Roboto";
+      font-size: 1.2em;
+
+      padding: 6px;
+      border-radius: 5px 0 0 5px;
+
+      border: none;
+
+      &:focus {
+        outline: none;
+        box-shadow: inset 0px 0px 5px 1px $btn-color;
+      }
+    }
+
+    button {
+      font-family: "My Roboto";
+      font-size: 1.2em;
+
+
+      padding: 5px;
+      border-radius: 0 5px 5px 0;
+
+      border: 1px solid white;
+
+      background-color: $btn-color;
+      color: white;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: $btn-hover;
+      }
+
+      &:active {
+        background-color: $btn-active;
+      }
+    }
+  }
+}
