@@ -16,6 +16,8 @@ nav {
     display: flex;
 
     li {
+      display: flex;
+      align-items: center;
       margin: 0 5px;
 
       button {
@@ -38,6 +40,31 @@ nav {
 
         &:active {
           background: $btn-active;
+        }
+      }
+
+      #spinner {
+        visibility: hidden;
+        height: 30px;
+        width: 30px;
+        border: 2px solid #f3f3f3;
+        border-top: 3px solid $btn-color;
+        border-radius: 100%;
+
+        margin: auto;
+      }
+
+      #spinner.show {
+        visibility: visible;
+        animation: spin 1s infinite linear;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
         }
       }
     }
@@ -77,6 +104,29 @@ nav {
 
       &:active {
         background-color: $btn-active;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    ul {
+      li {
+        button {
+          font-size: 0.8em;
+        }
+      }
+    }
+    h1 {
+      font-size: 0.8em;
+    }
+    form {
+      input[type="search"] {
+        font-size: 0.8em;
+      }
+      button{
+        font-size: 0.8em;
       }
     }
   }
