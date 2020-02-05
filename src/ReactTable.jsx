@@ -20,7 +20,7 @@ export default class ReactTable extends Component {
     })
   }
 
-  changeCount = (records) => {
+  splitRecords = (records) => {
     const size = 50;
     const splitedRecords = records.reduce((finalRecordsList, record, index) => {
       if (finalRecordsList[finalRecordsList.length - 1].length === size) {
@@ -31,8 +31,14 @@ export default class ReactTable extends Component {
       return finalRecordsList;
     }, [[]]);
 
+    return splitedRecords;
+  }
+
+  changeCount = (records) => {
+
+
     this.setState({
-      records: splitedRecords,
+      records: this.splitRecords(records),
       currentPage: 0
     }, () => {
       console.log(this.state);
