@@ -154,6 +154,7 @@ export default class ReactTable extends Component {
         <MainHeader
           changeCount={this.changeCount}
           filterRecords={this.filterRecords}
+          availability={this.state.records.length === 0? false : true}
         />
         {this.state.splitedRecords.length > 0 ? (
           <>

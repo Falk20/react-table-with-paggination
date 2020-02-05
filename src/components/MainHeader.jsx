@@ -12,7 +12,9 @@ export default class MainHeader extends Component {
             <nav className=''>
                 <h1>Таблица</h1>
                 <RecordsCount changeCount={this.props.changeCount}/>
-                <button className="add-new-record" onClick={this.addRecordHandle}>Новая запись</button>
+                {this.props.availability? (
+                    <button className="show-form" onClick={this.addRecordHandle}>Новая запись</button>
+                ): null}
                 <Filter filterRecords={this.props.filterRecords}/>
             </nav>
         )
