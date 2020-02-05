@@ -39,7 +39,9 @@ export default class AddNewRecord extends Component {
         } else {
             let alrt = document.querySelector('.alert');
             alrt.classList.remove('hidden');
-            setTimeout(() => { alrt.classList.add('hidden') }, 4000);
+            setTimeout(() => {
+                alrt.classList.add('hidden');
+            }, 2000);
         }
     }
 
