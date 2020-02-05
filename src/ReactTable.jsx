@@ -139,6 +139,15 @@ export default class ReactTable extends Component {
     });
   }
 
+  addNewRecord = (record) => {
+    this.setState(oldState => {
+      oldState.records.unshift(record)
+      oldState.splitedRecords = this.splitRecords(oldState.records);
+      oldState.currentPage = 0;
+      return oldState;
+    })
+  }
+
   render() {
     return (
       <div className=''>
@@ -168,7 +177,7 @@ export default class ReactTable extends Component {
         {this.state.choosenRecord.id ? (
           <ViewInfoPopup choosenRecord={this.state.choosenRecord} />
         ) : null}
-        <AddNewRecord />
+        <AddNewRecord addNewRecord={this.addNewRecord}/>
       </div>
     )
   }
