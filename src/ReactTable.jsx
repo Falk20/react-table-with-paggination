@@ -1,19 +1,39 @@
-import React, { Component } from 'react'
-import DataCountChanger from './components/DataCountChanger';
+import React, { Component } from 'react';
+import MainHeader from './components/MainHeader';
 import MainTable from './components/MainTable';
+import Pagination from './components/Pagination';
 
 export default class ReactTable extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-
+      records: [],
+      currentPage: 0
     }
   }
 
+  changePage = (page) => {
+    this.setState(oldState => {
+      oldState.currentPage = page;
+      return oldState;
+    })
+  }
+
   changeCount = (records) => {
+    const size = 50;
+    const splitedRecords = records.reduce((finalRecordsList, record, index) => {
+      if (finalRecordsList[finalRecordsList.length - 1].length === size) {
+        finalRecordsList.push([]);
+      }
+
+      finalRecordsList[finalRecordsList.length - 1].push(record)
+      return finalRecordsList;
+    }, [[]]);
+
     this.setState({
-      records
+      records: splitedRecords,
+      currentPage: 0
     }, () => {
       console.log(this.state);
     })
@@ -22,9 +42,21 @@ export default class ReactTable extends Component {
   render() {
     return (
       <div className="">
-        <DataCountChanger changeCount={this.changeCount} />
-        {this.state.records ? (
-          <MainTable headers={ Object.keys(this.state.records[0])} />
+        <MainHeader changeCount={this.changeCount} />
+        {this.state.records.length > 0 ? (
+          <>
+            <Pagination
+              changePage={this.changePage}
+              pageCount={this.state.records.length}
+              currentPage={this.state.currentPage}
+            />
+            <MainTable records={this.state.records[this.state.currentPage]} />
+            <Pagination
+              changePage={this.changePage}
+              pageCount={this.state.records.length}
+              currentPage={this.state.currentPage}
+            />
+          </>
         ) : null}
       </div>
     )
