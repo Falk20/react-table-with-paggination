@@ -28,7 +28,7 @@ export default class TableBody extends Component {
             const address = record.address;
             const viewAddress = `${address.streetAddress},\n${address.city} ${address.zip}, ${address.state}`;
             return (
-                <tr key={record.id + record.email}>
+                <tr key={record.id + record.email + record.firstName + record.lastName + record.phone + viewAddress}>
                     <td className='id' name='id'>{record.id}</td>
                     <td className='first-name' name='first-name'>{record.firstName}</td>
                     <td className='last-name' name='last-name'>{record.lastName}</td>
