@@ -18,7 +18,7 @@ export default class AddNewRecord extends Component {
 
         if (emptyElem.length === 0) {
             this.setState({
-                id: parseInt (formElems['id'].value),
+                id: parseInt(formElems['id'].value),
                 firstName: formElems['first-name'].value,
                 lastName: formElems['last-name'].value,
                 email: formElems['email'].value,
@@ -36,6 +36,10 @@ export default class AddNewRecord extends Component {
                 document.querySelector('.add-new-record').reset();
                 document.querySelector('.form-wrapper').classList.add('hidden');
             });
+        } else {
+            let alrt = document.querySelector('.alert');
+            alrt.classList.remove('hidden');
+            setTimeout(() => { alrt.classList.add('hidden') }, 4000);
         }
     }
 
@@ -48,6 +52,7 @@ export default class AddNewRecord extends Component {
     render() {
         return (
             <div className='form-wrapper hidden' onClick={this.clickHandle}>
+                <span className='alert hidden'>Заполните все поля</span>
                 <form className="add-new-record" onSubmit={this.submitHandle}>
                     <label htmlFor="id">ID:</label>
                     <input id='id' name='id' type="number" />

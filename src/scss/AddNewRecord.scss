@@ -10,8 +10,34 @@
   background: rgba(0, 0, 0, 0.4);
   z-index: 1000;
 
-  &.hidden {
-    display: none;
+  .alert {
+    background: white;
+    color: $main;
+    font-size: 1.5em;
+    border-radius: 0 0 5px 5px;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    margin: auto;
+    animation: show 4s;
+
+    @keyframes show {
+      0% {
+        top: -100%;
+      }
+
+      25%{
+        top: 0;
+      }
+
+      75% {
+        top: 0;
+      }
+
+      100% {
+        top: -100%;
+      }
+    }
   }
 
   form.add-new-record {
@@ -104,4 +130,8 @@
       }
     }
   }
+}
+
+.hidden {
+  display: none;
 }
