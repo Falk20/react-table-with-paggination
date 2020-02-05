@@ -15,7 +15,7 @@ export default class MainHeader extends Component {
                 {this.props.availability? (
                     <button className="show-form" onClick={this.addRecordHandle}>Новая запись</button>
                 ): null}
-                <Filter filterRecords={this.props.filterRecords}/>
+                <Filter setFilter={this.props.setFilter}/>
             </nav>
         )
     }

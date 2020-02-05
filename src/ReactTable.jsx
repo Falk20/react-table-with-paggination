@@ -13,7 +13,8 @@ export default class ReactTable extends Component {
       records: [],
       splitedRecords: [],
       currentPage: 0,
-      choosenRecord: {}
+      choosenRecord: {},
+      filter: ''
     }
   }
 
@@ -73,12 +74,20 @@ export default class ReactTable extends Component {
 
     this.setState({
       records: records,
-      splitedRecords: this.splitRecords(records),
-      currentPage: 0
+    }, () => {
+      this.filterRecords(this.state.filter);
     });
   }
 
-  filterRecords = (searchString) => {
+  setFilter = (searchString) => {
+    this.setState(oldState => {
+      oldState.filter = searchString;
+    }, () => {
+      this.filterRecords(this.state.filter);
+    });
+  }
+
+  filterRecords = (filter) => {
     let records = this.state.records;
     //в данном случае нет смысла обрабатывать более глубокую вложенность,
     //так как это нагрузит функцию,
@@ -88,12 +97,12 @@ export default class ReactTable extends Component {
       for (let param in record) {
         if (typeof record[param] === 'object') {
           for (let subParam in record[param]) {
-            if (record[param][subParam].includes(searchString)) {
+            if (record[param][subParam].includes(filter)) {
               return true;
             }
           }
         } else {
-          if (record[param].toString().includes(searchString)) {
+          if (record[param].toString().includes(filter)) {
             return true;
           }
         }
@@ -113,10 +122,10 @@ export default class ReactTable extends Component {
     this.setState({
       records: records,
       splitedRecords: this.splitRecords(records),
-      currentPage: 0
-    }, () => {
-      console.log(this.state);
-    })
+      currentPage: 0,
+      choosenRecord: {},
+      filter: ''
+    });
   }
   //поскольку api предоставляет записи с повторяющимися id,
   // придётся расчитывать, что сочетание id+firstName будет уникальным
@@ -134,7 +143,6 @@ export default class ReactTable extends Component {
 
       return oldState;
     }, () => {
-      console.log(this.state.choosenRecord);
       document.querySelector('.view-info-wrapper').classList.remove('hidden');
     });
   }
@@ -153,8 +161,8 @@ export default class ReactTable extends Component {
       <div className=''>
         <MainHeader
           changeCount={this.changeCount}
-          filterRecords={this.filterRecords}
-          availability={this.state.records.length === 0? false : true}
+          setFilter={this.setFilter}
+          availability={this.state.records.length === 0 ? false : true}
         />
         {this.state.splitedRecords.length > 0 ? (
           <>
@@ -178,7 +186,7 @@ export default class ReactTable extends Component {
         {this.state.choosenRecord.id ? (
           <ViewInfoPopup choosenRecord={this.state.choosenRecord} />
         ) : null}
-        <AddNewRecord addNewRecord={this.addNewRecord}/>
+        <AddNewRecord addNewRecord={this.addNewRecord} />
       </div>
     )
   }
