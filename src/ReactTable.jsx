@@ -76,7 +76,7 @@ export default class ReactTable extends Component {
   }
 
   filterRecords = (e) => {
-
+    
   }
 
   changeCount = (records) => {
@@ -92,7 +92,10 @@ export default class ReactTable extends Component {
   render() {
     return (
       <div className=''>
-        <MainHeader changeCount={this.changeCount} />
+        <MainHeader
+          changeCount={this.changeCount}
+          filterRecords={this.filterRecords}
+        />
         {this.state.splitedRecords.length > 0 ? (
           <>
             <Pagination
