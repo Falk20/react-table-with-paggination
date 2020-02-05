@@ -24,11 +24,11 @@ export default class TableBody extends Component {
     }
 
     render() {
-        let records = this.props.records.map((record) => {
+        let records = this.props.records.map((record, index) => {
             const address = record.address;
             const viewAddress = `${address.streetAddress},\n${address.city} ${address.zip}, ${address.state}`;
             return (
-                <tr key={record.id + record.email + record.firstName + record.lastName + record.phone + viewAddress}>
+                <tr key={index}>
                     <td className='id' name='id'>{record.id}</td>
                     <td className='first-name' name='first-name'>{record.firstName}</td>
                     <td className='last-name' name='last-name'>{record.lastName}</td>
