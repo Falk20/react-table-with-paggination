@@ -41,22 +41,23 @@ export default class ReactTable extends Component {
       let one = a[columnName];
       let two = b[columnName];
 
-      if (type === 'number') {
-        return one - two;
+      if (type === 'string') {
+        one = one.toLowerCase();
+        two = two.toLowerCase();
       }
-      
+
       if (type === 'address') {
         one = one.city;
         two = two.city;
       }
 
-      if (one.toLowerCase() > two.toLowerCase()) {
+      if (one > two) {
         return 1;
       }
-      if (one.toLowerCase() === two.toLowerCase()) {
+      if (one === two) {
         return 0;
       }
-      if (one.toLowerCase() < two.toLowerCase()) {
+      if (one < two) {
         return -1;
       }
 
