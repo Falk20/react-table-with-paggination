@@ -8,7 +8,7 @@ export default class MainHeader extends Component {
             <nav className=''>
                 <h1>Таблица</h1>
                 <RecordsCount changeCount={this.props.changeCount}/>
-                <Filter />
+                <Filter filterRecords={this.props.filterRecords}/>
             </nav>
         )
     }
